@@ -1,48 +1,65 @@
-﻿{
-    bool hungry = true;
+﻿using System;
 
-    do
+public class Program
+{
+
+    public static void Main()
     {
-        Console.Write("How many people are we making PB&J sandwiches for?");
+
+        Console.WriteLine("Welcome to our Mac & Cheese Buffet. All you can eat for $9.99! " +
+            "We only charge extra for coffee & smoothies. How many people are in your group? " +
+            "Please, groups of 6 or fewer.");
         int Num = int.Parse(Console.ReadLine());
-        Decimal Val2 = Num * 2;
-        Decimal Val4 = Num * 4;
-        Decimal ValL = (Val2 / 28);
-        Decimal ValPB = (Val2 / 32);
-        Decimal ValJ = (Val4 / 48);
 
-        Console.WriteLine("You need:");
-        Console.WriteLine(" ");
-        Console.WriteLine(Num * 2 + " slices of bread");
-        Console.WriteLine(Num * 2 + " tablespoons of peanut butter");
-        Console.WriteLine(Num * 4 + " teaspoons of jelly");
-
-        Console.WriteLine(" ");
-        Console.WriteLine("Which is...");
-        Console.WriteLine(" ");
-
-        Console.WriteLine(Math.Ceiling(ValL) + " loaves of bread");
-        Console.WriteLine(Math.Ceiling(ValPB) + " jars of peanut butter");
-        Console.WriteLine(Math.Ceiling(ValJ) + " jars of jelly");
-        Console.WriteLine(" ");
-        Console.WriteLine("Would you like to restart? Enter yes or y to continue, or enter any other key to exit.");
-        String answer = (Console.ReadLine());
-
-        if (answer == "y")
+        if (Num < 7)
         {
-            hungry = true;
+            Console.WriteLine("A table for " + Num + "! Please follow me and take a seat. " +
+                "Let's get everyone started with some drinks. A water fountain and glasses are next to the plates;" +
+                " if you want water you can grab that. We have flavor of the day smoothie or coffee.");
+            Console.WriteLine(" ");
+
+            int coffeeCount = 0;
+            int smoothieCount = 0;
+
+            Double BuffetCost = 9.99;
+            Double SmoothieCost = 3.99;
+            Double CoffeeCost = 1.99;
+
+            for (int i = 1; i <= Num; i++)
+            {
+                Console.WriteLine("Go ahead, person number " + i + " , smoothie or coffee?");
+                String answer = (Console.ReadLine());
+
+                if (answer == "coffee")
+                {
+                    Console.WriteLine("Coffee, Great!");
+                    coffeeCount = coffeeCount + 1;
+                }
+
+                else if (answer == "smoothie")
+                {
+                    Console.WriteLine("Smoothie, Great!");
+                    smoothieCount = smoothieCount + 1;
+                }
+
+                else
+                { Console.WriteLine("We don't have that option. You can get water from the fountain by the plates."); }
+            }
+
+
+            Console.WriteLine("Okay, so that's " + coffeeCount + " coffees and " + smoothieCount + " smoothies. I'll be right back. Feel free to grab your food!");
+
+            Double coffeeTotal = coffeeCount * CoffeeCost;
+            Double smoothieTotal = smoothieCount * SmoothieCost;
+            Double buffetTotal = BuffetCost * Num;
+            Double BillTotal = buffetTotal + coffeeTotal + smoothieTotal;
+
+            Console.WriteLine("Here's you bill! Total price: $" + BillTotal);
+
         }
-        else if (answer == "yes")
-        {
-            hungry = true;
-        }
+
         else
-        {
-            Console.WriteLine("Goodbye!");
-            break;
-        }
+        { Console.WriteLine("Sorry, we can only seat groups up to 6 right now. Have a nice day."); }
     }
-    while (hungry);
+
 }
-
-
